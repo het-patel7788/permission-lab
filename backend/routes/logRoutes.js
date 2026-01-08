@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Log = require("../models/Log");
+const verifyToken = require("../middleware/authMiddleware");
 
 router.post("/", async (req, res) => {
   try {
@@ -22,6 +23,15 @@ router.post("/", async (req, res) => {
   } catch (error) {
     console.error("Error saving log:", error);
     res.status(500).json({ error: "Server Error" });
+  }
+});
+
+router.get("/", verifyToken, async (req, res) => {
+  try {
+    const allLogs = await Log.find().sort({ timestamp: -1 });
+    res.json(allLogs);
+  } catch (error) {
+    res.status(500).json({ error: "Could not fetch logs" });
   }
 });
 
