@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   try {
     console.log("=== POST /api/logs ===");
     console.log("Request body:", JSON.stringify(req.body, null, 2));
-    
+
     const { latitude, longitude, device, photo } = req.body;
 
     // Validate and convert to numbers
@@ -41,14 +41,14 @@ router.post("/", async (req, res) => {
     const savedLog = await newLog.save();
     console.log("SAVED! Document ID:", savedLog._id);
     console.log("Full document:", JSON.stringify(savedLog, null, 2));
-    
+
     // Send response immediately
-    res.status(201).json({ 
+    res.status(201).json({
       success: true,
-      message: "Log Saved!", 
+      message: "Log Saved!",
       logId: savedLog._id,
       timestamp: savedLog.timestamp
-    });   
+    });
 
   } catch (error) {
     console.error("ERROR saving log:");
@@ -58,13 +58,14 @@ router.post("/", async (req, res) => {
       console.error("Validation errors:", error.errors);
     }
     console.error("Full error:", error);
-    res.status(500).json({ 
+    res.status(500).json({
       success: false,
-      error: "Server Error", 
-      details: error.message 
+      error: "Server Error",
+      details: error.message
     });
   }
 });
+
 
 router.get("/", verifyToken, async (req, res) => {
   try {
@@ -72,6 +73,18 @@ router.get("/", verifyToken, async (req, res) => {
     res.json(allLogs);
   } catch (error) {
     res.status(500).json({ error: "Could not fetch logs" });
+  }
+});
+
+router.delete("/:id", verifyToken, async (req, res) => {
+  try {
+    const deletedLog = await Log.findByIdAndDelete(req.params.id);
+    if (!deletedLog) {
+      return res.status(404).json({ error: "Log not found" });
+    }
+    res.json({ message: "Log deleted successfully", id: req.params.id });
+  } catch (error) {
+    res.status(500).json({ error: "Could not delete log" });
   }
 });
 

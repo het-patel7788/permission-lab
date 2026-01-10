@@ -21,8 +21,8 @@ const verifyToken = async (req, res, next) => {
     // Verify with Google
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     
-    // CHECK: Is this YOU? (IMPORTANT: Change this email!)
-    if (decodedToken.email !== "phet71599@gmail.com") {
+    // CHECK: Is this YOU? (IMPORTANT: Change this email!)👇
+    if (decodedToken.email !== process.env.ADMIN_EMAIL) {
         return res.status(403).json({ error: "Access Denied: You are not the Admin! 🚫" });
     }
 
