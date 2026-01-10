@@ -2,8 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  // PASTE YOUR CONFIG KEYS HERE FROM NOTEPAD
-  apiKey: "AIzaSyBykMGLJYpwcy5oyaP69rDQAbvKazRR8pU",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "spylink-523ac.firebaseapp.com",
   projectId: "spylink-523ac",
   storageBucket: "spylink-523ac.firebasestorage.app",
