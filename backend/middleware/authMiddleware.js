@@ -1,5 +1,13 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("../permissionLab-backend-firebase-key.json");
+
+
+let serviceAccount;
+
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+  serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+} else {
+  serviceAccount = require('../permissionLab-backend-firebase-key.json');
+}
 
 // 1. Initialize Firebase Admin
 admin.initializeApp({
