@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../firebase"; // We need to make this file next!
+import { auth, googleProvider } from "../firebase"; 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -73,7 +73,7 @@ export default function Admin() {
       {/* HEADER */}
       <div className="bg-gray-800 p-4 flex justify-between items-center shadow-lg z-10 border-b border-gray-700">
         <div className="flex items-center space-x-4">
-          <h1 className="text-xl font-bold text-green-400">SpyLink Dashboard 🌍</h1>
+          <h1 className="text-xl font-bold text-green-400">SpyLink Dashboard</h1>
 
           {/* TOGGLE SWITCH */}
           <div className="bg-gray-700 rounded-lg p-1 flex text-sm">

